@@ -1,7 +1,5 @@
 from django.db import models
 
 
-
-
-class Feedback(models.Model):
+class FeedbackModel(models.Model):
     pass
