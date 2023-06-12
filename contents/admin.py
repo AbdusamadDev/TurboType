@@ -1,12 +1,5 @@
 from django.contrib import admin
-<<<<<<< HEAD
-from .models import Contents
-# Register your models here.
-
-
-admin.site.register(Contents)
-=======
-from contents.models import ContentModel
+from contents.models import ContentModel, CategoryModel
 
 admin.site.register(ContentModel)
->>>>>>> b76fcb9a0111a77b80b50cfd58036a0cb043b823
+admin.site.register(CategoryModel)

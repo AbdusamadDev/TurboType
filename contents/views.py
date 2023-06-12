@@ -1,34 +1,52 @@
-from django.shortcuts import render
-from rest_framework.views import APIView
-from rest_framework.response import Response
-
-from rest_framework.decorators import api_view
-
-
-class ContentsAPIView(APIView):
-    def get(self, request):
-        return Response({"msg": "ContentsAPIView"})
-
-
-@api_view(["GET"])
-def home(request):
-    return Response({"HI": "Hello Home"}, status=200)
-
-
-<<<<<<< HEAD
-from rest_framework import status
-from rest_framework.generics import CreateAPIView
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-
-from contents.serializers import ContentCreateSerializer
-from contents.models import ContentModel
+from contents.models import ContentModel, CategoryModel
+from contents.serializers import ContentSerializer, CategorySerializer
+from rest_framework.generics import (
+    CreateAPIView,
+    RetrieveUpdateAPIView,
+    RetrieveAPIView,
+    ListAPIView,
+)
 
 
 class ContentCreateAPIView(CreateAPIView):
-    serializer_class = ContentCreateSerializer
+    serializer_class = ContentSerializer
     model = ContentModel
     queryset = ContentModel.objects.all()
-    # permission_classes = [IsAuthenticated]
-=======
->>>>>>> 47b0f14e9a5170bb3c34e9f5ddf11001445c15cf
+
+    # def post(self, request, *args, **kwargs):
+    #     serializer = self.serializer_class(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     category_id = CategoryModel.objects.get(pk=serializer.validated_data.get("category")).id
+
+    def get_serializer_context(self):
+        print("Function is working")
+        category_id = CategoryModel.objects.get(pk=self.request.data.get("category"))
+        return super().get_serializer_context().update({"category": category_id})
+
+
+class ContentUpdateAPIView(RetrieveUpdateAPIView):
+    serializer_class = ContentSerializer
+    model = ContentModel
+    queryset = ContentModel.objects.all()
+    lookup_url_kwarg = "pk"
+
+
+class ContentRetrieveAPIView(RetrieveAPIView):
+    lookup_url_kwarg = "pk"
+    model = ContentModel
+    queryset = ContentModel.objects.all()
+
+
+class ContentListAPIView(ListAPIView):
+    lookup_url_kwarg = "pk"
+    model = ContentModel
+
+    def get_queryset(self):
+        queryset = self.queryset.filter(category_id=self.kwargs.get("pk"))
+        return queryset
+
+
+class CategoryCreateAPIView(CreateAPIView):
+    serializer_class = CategorySerializer
+    model = CategoryModel
+    queryset = CategoryModel.objects.all()
