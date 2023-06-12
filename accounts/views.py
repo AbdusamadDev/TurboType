@@ -13,12 +13,13 @@ class RegisterAPIView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserCreationSerializer
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):                       
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         username = serializer.validated_data.get("username")
         password = serializer.validated_data.get("password")
+
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
