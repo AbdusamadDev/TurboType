@@ -1,8 +1,6 @@
 import os
 from pathlib import Path
 
-print("settings.py started")
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-n^s54jl394v4!_#n^78&7o-9swqt*ckq1pcyx_g3@vhb$8gct5'
 DEBUG = True
@@ -45,7 +43,7 @@ TEMPLATES = [
 ]
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.SessionAuthentication"
+        "rest_framework.authentication.TokenAuthentication"
     ]
 }
 WSGI_APPLICATION = 'config.wsgi.application'

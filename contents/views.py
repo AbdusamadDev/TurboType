@@ -11,4 +11,5 @@ class ContentCreateAPIView(CreateAPIView):
     serializer_class = ContentCreateSerializer
     model = ContentModel
     queryset = ContentModel.objects.all()
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
+
