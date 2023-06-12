@@ -1,5 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import User
+<<<<<<< HEAD
+# Create your models here.
+
+
+class Contents(models.Model):
+    user_id = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    book_name = models.CharField(max_length=200)
+    book_author = models.CharField(max_length=200)
+    book_gape = models.URLField(blank=True)
+    date_created = models.DateField()
+    is_confirned = models.IntegerField() 
+    
+
+    def __str__(self):
+        return self.book_name
+
 
 STATUS_CHOICES = (
     (1, 'Confirmed'),
@@ -15,3 +31,4 @@ class ContentModel(models.Model):
     book_page = models.PositiveIntegerField(default=0, blank=False, unique=False)
     is_confirmed = models.BooleanField(choices=STATUS_CHOICES, unique=False, default=0)
     date_created = models.DateTimeField(auto_now_add=True)
+
