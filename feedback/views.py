@@ -1,10 +1,7 @@
-from rest_framework.views import APIView
+from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
-#from django.http import HttpResponse
-
-# Create your views here.
+from rest_framework import status
 
 
-class FeedbackAPIView(APIView):
-    def get(self,request):
-        return Response({"msg":"FeedbackAPIView"})  
+class FeedbackCreateAPIView(CreateAPIView):
+    serializer_class = FeedbackSerializer

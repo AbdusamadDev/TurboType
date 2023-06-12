@@ -13,16 +13,6 @@ class ContentCreateAPIView(CreateAPIView):
     model = ContentModel
     queryset = ContentModel.objects.all()
 
-    # def post(self, request, *args, **kwargs):
-    #     serializer = self.serializer_class(data=request.data)
-    #     serializer.is_valid(raise_exception=True)
-    #     category_id = CategoryModel.objects.get(pk=serializer.validated_data.get("category")).id
-
-    def get_serializer_context(self):
-        print("Function is working")
-        category_id = CategoryModel.objects.get(pk=self.request.data.get("category"))
-        return super().get_serializer_context().update({"category": category_id})
-
 
 class ContentUpdateAPIView(RetrieveUpdateAPIView):
     serializer_class = ContentSerializer
