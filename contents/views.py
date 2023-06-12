@@ -15,6 +15,7 @@ def home(request):
     return Response({"HI": "Hello Home"}, status=200)
 
 
+<<<<<<< HEAD
 from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
@@ -29,3 +30,5 @@ class ContentCreateAPIView(CreateAPIView):
     model = ContentModel
     queryset = ContentModel.objects.all()
     # permission_classes = [IsAuthenticated]
+=======
+>>>>>>> 47b0f14e9a5170bb3c34e9f5ddf11001445c15cf
