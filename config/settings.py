@@ -1,4 +1,7 @@
+import os
 from pathlib import Path
+
+print("settings.py started")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-n^s54jl394v4!_#n^78&7o-9swqt*ckq1pcyx_g3@vhb$8gct5'
@@ -13,6 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "rest_framework",
     "accounts",
+    "contents",
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -39,6 +43,11 @@ TEMPLATES = [
         },
     },
 ]
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication"
+    ]
+}
 WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
@@ -61,6 +70,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 LANGUAGE_CODE = 'en-us'
+STATIC_ROOT = os.path.join("static")
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
