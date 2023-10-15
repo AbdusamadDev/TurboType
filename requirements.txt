@@ -3,3 +3,4 @@ djangorestframework
 python-dotenv
 python-jose
 requests
+playsound
